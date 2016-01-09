@@ -33,6 +33,15 @@ var SummaryGroup = React.createClass({
     selectorOptions: React.PropTypes.object.isRequired,
     sectionId: React.PropTypes.string.isRequired
   },
+  getInitialState: function() {
+    return { hover: false };
+  },
+  mouseOver: function () {
+    this.setState({ hover: true });
+  },
+  mouseOut: function () {
+    this.setState({ hover: false });
+  },
   render: function() {
     var self = this;
     var primaryOption = self.props.selectorOptions.primary;
@@ -73,6 +82,7 @@ var SummaryGroup = React.createClass({
 
     var classes = classnames({
       'SummaryGroup-info--selected': (option.key === this.props.selectedSubtotal),
+      'SummaryGroup-info--hovered': this.state.hover,
       'SummaryGroup-info-primary': option.primary,
       'SummaryGroup-info-primary--average': option.primary && option.average,
       'SummaryGroup-info': !option.primary,
